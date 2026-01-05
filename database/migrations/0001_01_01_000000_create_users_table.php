@@ -17,6 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            // role dikontrol dari controller (tanpa default)
+            $table->enum('role', ['admin', 'mahasiswa', 'dosen']);
+
+            // informasi tambahan
+            $table->string('ip_address')->nullable();
+            $table->string('user_agent')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
