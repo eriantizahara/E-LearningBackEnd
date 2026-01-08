@@ -8,7 +8,7 @@
         </h1>
 
         <p class="mt-2 text-muted">
-            Hai admin {{ Auth::user()->name ?? '' }},
+            Hai {{ Auth::user()->name ?? '' }},
             selamat datang di Sistem Informasi Akademik.
             Silakan gunakan menu di samping untuk mengelola data akademik.
         </p>

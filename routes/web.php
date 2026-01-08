@@ -2,16 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginControllerWeb;
+use App\Http\Controllers\RegisterControllerWeb;
 use App\Http\Controllers\LayoutsControllerWeb;
 use App\Http\Controllers\UsersControllerWeb;
 use App\Http\Controllers\DosenControllerWeb;
 use App\Http\Controllers\MahasiswaControllerWeb;
 use App\Http\Controllers\MatakuliahControllerWeb;
 use App\Http\Controllers\KelasControllerWeb;
-use App\Http\Controllers\KrsControllerWeb;
+use App\Http\Controllers\KRSControllerWeb;
 use App\Http\Controllers\TugasControllerWeb;
 use App\Http\Controllers\ModulControllerWeb;
 use App\Http\Controllers\PengumpulanTugasControllerWeb;
+use App\Http\Controllers\KRSMahasiswaControllerWeb;
+
 
 
 // Route::get('/', function () {
@@ -26,7 +29,8 @@ Route::get('/logout', [LoginControllerWeb::class, 'logout'])->name('logout');
 // Route::post('/login', [LoginControllerWeb::class, 'ceklogin'])->name('login.cek');
 // Route::get('/logout', [LoginControllerWeb::class, 'logout'])->name('logout');
 
-Route::get('/register', [LoginControllerWeb::class, 'register'])->name('register');
+Route::get('/register', [RegisterControllerWeb::class, 'showRegister'])->name('register');
+Route::post('/register', [RegisterControllerWeb::class, 'register'])->name('register.process');
 
 Route::resource('/dashboard', LayoutsControllerWeb::class);
 Route::resource('/users', UsersControllerWeb::class);
@@ -36,8 +40,8 @@ Route::resource('/matakuliahs', MatakuliahControllerWeb::class);
 Route::resource('/kelas', KelasControllerWeb::class);
 
 
-Route::resource('krs', KrsControllerWeb::class);
-Route::post('krs/{kode_krs}/approve', [KrsControllerWeb::class, 'approve'])
+Route::resource('krs', KRSControllerWeb::class);
+Route::post('krs/{kode_krs}/approve', [KRSControllerWeb::class, 'approve'])
     ->name('krs.approve');
 
 
@@ -90,5 +94,27 @@ Route::prefix('pengumpulan-tugas')->middleware(['auth'])->group(function () {
 
     // Update nilai pengumpulan tugas
     Route::put('/{id}', [PengumpulanTugasControllerWeb::class, 'update'])->name('pengumpulan_tugas.update');
+});
 
+
+
+Route::middleware(['auth'])->prefix('krs-mahasiswa')->name('krs.mahasiswa.')->group(function () {
+
+    // =============================
+    // HALAMAN KRS MAHASISWA
+    // =============================
+    Route::get('/', [KRSMahasiswaControllerWeb::class, 'index'])
+        ->name('index');
+
+    // =============================
+    // TAMBAH KELAS KE KRS
+    // =============================
+    Route::post('/detail', [KRSMahasiswaControllerWeb::class, 'storeDetail'])
+        ->name('detail.store');
+
+    // =============================
+    // HAPUS KELAS DARI KRS
+    // =============================
+    Route::delete('/detail/{id}', [KRSMahasiswaControllerWeb::class, 'destroyDetail'])
+        ->name('detail.destroy');
 });

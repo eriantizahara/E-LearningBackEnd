@@ -228,23 +228,13 @@ $role = session('role');
               <span class="hide-menu">Akademik</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="{{ route('krs.index') }}" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('krs.mahasiswa.index') }}" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:clipboard-list-bold-duotone" class="fs-6"></iconify-icon>
                 </span>
                 <span class="hide-menu">KRS</span>
               </a>
             </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:checklist-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Tugas</span>
-              </a>
-            </li>
-
           </ul>
         </nav>
         @endif
@@ -269,19 +259,19 @@ $role = session('role');
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link nav-icon-hover" href="javascript:void(0)">
                 <i class="ti ti-bell-ringing"></i>
                 <div class="notification bg-primary rounded-circle"></div>
               </a>
-            </li>
+            </li> --}}
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="#" target="_blank" class="btn btn-primary me-2"><span class="d-none d-md-block">Check Pro
+              {{-- <a href="#" target="_blank" class="btn btn-primary me-2"><span class="d-none d-md-block">Check Pro
                   Version</span> <span class="d-block d-md-none">Pro</span></a>
               <a href="#" target="_blank" class="btn btn-success"><span class="d-none d-md-block">Download Free </span>
-                <span class="d-block d-md-none">Free</span></a>
+                <span class="d-block d-md-none">Free</span></a> --}}
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">

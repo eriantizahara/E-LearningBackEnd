@@ -54,22 +54,75 @@
               </p>
             </div>
 
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register.process') }}">
               @csrf
+
+              {{-- DATA AKUN & MAHASISWA --}}
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">No BP</label>
+                <input type="text" name="nobp" class="form-control" placeholder="Masukkan No BP" required>
+              </div>
 
               <div class="mb-3">
                 <label class="form-label fw-semibold">Nama Lengkap</label>
-                <input type="text" name="name" class="form-control" placeholder="Masukkan nama lengkap">
+                <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama sesuai ijazah" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Username / Nama Akun</label>
+                <input type="text" name="name" class="form-control" placeholder="Masukkan Username / Nama Akun" required>
               </div>
 
               <div class="mb-3">
                 <label class="form-label fw-semibold">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Masukkan email">
+                <input type="email" name="email" class="form-control" placeholder="Masukkan email" required>
               </div>
 
               <div class="mb-4">
                 <label class="form-label fw-semibold">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Masukkan password">
+                <input type="password" name="password" class="form-control" placeholder="Masukkan password" required>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Jenis Kelamin</label>
+                <select name="jenis_kelamin" class="form-select" required>
+                  <option value="">-- Pilih --</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Tempat Lahir</label>
+                <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat lahir">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Tanggal Lahir</label>
+                <input type="date" name="tanggal_lahir" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Alamat</label>
+                <textarea name="alamat" rows="2" class="form-control" placeholder="Alamat lengkap"></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">No HP</label>
+                <input type="text" name="no_hp" class="form-control" placeholder="08xxxxxxxxxx">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Program Studi</label>
+                <input type="text" name="prodi" class="form-control" placeholder="Contoh: Sistem Informasi" required>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Angkatan</label>
+                <input type="number" name="angkatan" class="form-control" placeholder="Contoh: 2022" required>
               </div>
 
               <button type="submit" class="btn btn-primary w-100 btn-register">
@@ -78,11 +131,10 @@
 
               <p class="text-center mt-4 mb-0">
                 Sudah memiliki akun?
-                <a href="{{ route('login') }}" class="fw-bold text-primary">
-                  Login
-                </a>
+                <a href="{{ route('login') }}" class="fw-bold text-primary">Login</a>
               </p>
             </form>
+
 
           </div>
         </div>
