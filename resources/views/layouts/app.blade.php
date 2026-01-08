@@ -1,3 +1,7 @@
+@php
+$role = session('role');
+@endphp
+
 <!doctype html>
 <html lang="en">
 
@@ -39,6 +43,7 @@
         </div>
 
         <!-- Sidebar navigation-->
+        @if ($role === 'admin')
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
             <li class="nav-small-cap">
@@ -94,7 +99,7 @@
               <span class="hide-menu">Akademik</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route(name: 'kelas.index') }}" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:buildings-2-bold-duotone" class="fs-6"></iconify-icon>
                 </span>
@@ -102,7 +107,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route(name: 'krs.index') }}" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:clipboard-list-bold-duotone" class="fs-6"></iconify-icon>
                 </span>
@@ -147,7 +152,106 @@
             </li>
           </ul>
         </nav>
+        @endif
         <!-- End Sidebar navigation -->
+
+        <!-- Sidebar navigation-->
+        @if(auth()->user()->role === 'dosen')
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav-small-cap">
+              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6" class="fs-6"></iconify-icon>
+              <span class="hide-menu">Akademik</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('moduls.index') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:book-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Modul</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('tugas.index') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:checklist-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Tugas</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('pengumpulan_tugas.index') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="mdi:file-document-edit-outline" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Pengumpulan Tugas</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        @endif
+        <!-- End Sidebar navigation -->
+
+        <!-- Sidebar navigation-->
+        @if ($role === 'mahasiswa')
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav-small-cap">
+              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6" class="fs-6"></iconify-icon>
+              <span class="hide-menu">Akademik</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('krs.index') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:clipboard-list-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">KRS</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="#" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:checklist-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Tugas</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        @endif
+        <!-- End Sidebar navigation -->
+
+
+
 
       </div>
       <!-- End Sidebar scroll-->

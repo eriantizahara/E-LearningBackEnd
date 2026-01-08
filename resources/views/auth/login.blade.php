@@ -54,15 +54,18 @@
                             </p>
                         </div>
 
-                        <form>
+                        <form action="{{ route('login.process') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
-                                <label class="form-label fw-semibold">Username / Email</label>
-                                <input type="text" class="form-control" placeholder="Masukkan username">
+                                <label class="form-label fw-semibold">Email</label>
+                                <input type="text" name="email" class="form-control" placeholder="Masukkan email"
+                                    required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Password</label>
-                                <input type="password" class="form-control" placeholder="Masukkan password">
+                                <input type="password" name="password" class="form-control"
+                                    placeholder="Masukkan password" required>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -78,15 +81,16 @@
                             <button type="submit" class="btn btn-primary w-100 btn-login">
                                 Masuk
                             </button>
-
-                            <p class="text-center mt-4 mb-0">
-                                Belum memiliki akun?
-                                <a href="{{ route('register') }}" class="fw-bold text-primary">
-                                    Daftar sekarang
-                                </a>
-
-                            </p>
                         </form>
+
+
+                        <p class="text-center mt-4 mb-0">
+                            Belum memiliki akun?
+                            <a href="{{ route('register') }}" class="fw-bold text-primary">
+                                Daftar sekarang
+                            </a>
+
+                        </p>
 
                     </div>
                 </div>
