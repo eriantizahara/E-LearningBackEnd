@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Dosen::class, 'user_id');
     }
+
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(
+            Mahasiswa::class,
+            'user_id', // FK di tabel mahasiswas
+            'id'       // PK di tabel users
+        );
+    }
 }
