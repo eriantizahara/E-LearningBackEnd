@@ -34,4 +34,13 @@ class Mahasiswa extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function krs()
+    {
+        return $this->hasOne(
+            Krs::class,
+            'mahasiswa_nobp',
+            'nobp'
+        );
+    }
 }
