@@ -14,6 +14,7 @@ use App\Http\Controllers\TugasControllerWeb;
 use App\Http\Controllers\ModulControllerWeb;
 use App\Http\Controllers\PengumpulanTugasControllerWeb;
 use App\Http\Controllers\KRSMahasiswaControllerWeb;
+use App\Http\Controllers\DashboardControllerWeb;
 
 
 
@@ -32,7 +33,7 @@ Route::get('/logout', [LoginControllerWeb::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterControllerWeb::class, 'showRegister'])->name('register');
 Route::post('/register', [RegisterControllerWeb::class, 'register'])->name('register.process');
 
-Route::resource('/dashboard', LayoutsControllerWeb::class);
+Route::resource('/dashboard', DashboardControllerWeb::class);
 Route::resource('/users', UsersControllerWeb::class);
 Route::resource('/dosens', DosenControllerWeb::class);
 Route::resource('/mahasiswas', MahasiswaControllerWeb::class);
