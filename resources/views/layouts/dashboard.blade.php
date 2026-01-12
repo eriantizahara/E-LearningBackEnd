@@ -202,7 +202,7 @@
             <div class="border border-primary rounded shadow-sm p-3 text-center">
                 <i class="bi bi-bar-chart-fill fs-2 text-primary"></i>
                 <div class="fw-bold mt-2">Laporan Akademik</div>
-                <div class="text-muted small">Rekap data & statistik</div>
+                <div class="text-muted small">Rekap data</div>
             </div>
         </a>
     </div>
@@ -211,10 +211,10 @@
     @if(Auth::user()->role === 'dosen')
     <div class="col-md-12">
         <a href="#" class="text-decoration-none">
-            <div class="border border-success rounded shadow-sm p-3 text-center">
-                <i class="bi bi-file-earmark-plus fs-2 text-success"></i>
+            <div class="border border-warning rounded shadow-sm p-3 text-center">
+                <i class="bi bi-file-earmark-plus fs-2 text-warning"></i>
                 <div class="fw-bold mt-2">Kelola Tugas</div>
-                <div class="text-muted small">Buat & nilai tugas</div>
+                <div class="text-muted small">Menilai tugas</div>
             </div>
         </a>
     </div>
@@ -223,9 +223,9 @@
     @if(Auth::user()->role === 'mahasiswa')
     <div class="col-md-12">
         <a href="{{ route('krs.mahasiswa.index') }}" class="text-decoration-none">
-            <div class="border border-warning rounded shadow-sm p-3 text-center">
-                <i class="bi bi-card-checklist fs-2 text-warning"></i>
-                <div class="fw-bold mt-2">KRS & Tugas</div>
+            <div class="border border-success rounded shadow-sm p-3 text-center">
+                <i class="bi bi-card-checklist fs-2 text-success"></i>
+                <div class="fw-bold mt-2">KRS</div>
                 <div class="text-muted small">Kelola studi Anda</div>
             </div>
         </a>
