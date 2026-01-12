@@ -15,6 +15,8 @@ use App\Http\Controllers\ModulControllerWeb;
 use App\Http\Controllers\PengumpulanTugasControllerWeb;
 use App\Http\Controllers\KRSMahasiswaControllerWeb;
 use App\Http\Controllers\DashboardControllerWeb;
+use App\Http\Controllers\ProfileControllerWeb;
+
 
 
 
@@ -118,4 +120,13 @@ Route::middleware(['auth'])->prefix('krs-mahasiswa')->name('krs.mahasiswa.')->gr
     // =============================
     Route::delete('/detail/{id}', [KRSMahasiswaControllerWeb::class, 'destroyDetail'])
         ->name('detail.destroy');
+});
+
+
+// profile dan akun
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileControllerWeb::class, 'profile'])->name('profile');
+    Route::get('/akun', [ProfileControllerWeb::class, 'akun'])->name('akun');
+    Route::post('/akun/ganti-password', [ProfileControllerWeb::class, 'updatePassword'])
+        ->name('akun.password.update');
 });

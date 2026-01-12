@@ -54,6 +54,35 @@
                             </p>
                         </div>
 
+                        {{-- ALERT SUCCESS --}}
+                        @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        @endif
+
+                        {{-- ALERT ERROR --}}
+                        @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        @endif
+
+                        {{-- VALIDATION ERROR --}}
+                        @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul class="mb-0 ps-3">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        @endif
+
+
                         <form action="{{ route('login.process') }}" method="POST">
                             @csrf
                             <div class="mb-3">
@@ -62,13 +91,13 @@
                                     required>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-4">
                                 <label class="form-label fw-semibold">Password</label>
                                 <input type="password" name="password" class="form-control"
                                     placeholder="Masukkan password" required>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center mb-4">
+                            {{-- <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember">
                                     <label class="form-check-label" for="remember">
@@ -76,7 +105,7 @@
                                     </label>
                                 </div>
                                 <a href="#" class="text-primary fw-semibold">Lupa password?</a>
-                            </div>
+                            </div> --}}
 
                             <button type="submit" class="btn btn-primary w-100 btn-login">
                                 Masuk
