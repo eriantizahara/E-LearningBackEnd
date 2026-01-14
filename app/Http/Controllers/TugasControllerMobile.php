@@ -10,7 +10,15 @@ class TugasControllerMobile extends Controller
 {
     public function getDataTugas(Request $request)
     {
+        // 🔐 ambil user dari sanctum
         $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthorized - token tidak valid'
+            ], 401);
+        }
+
         $kodeMatkul = $request->query('kode_matakuliah');
 
         if (!$kodeMatkul) {
@@ -30,7 +38,7 @@ class TugasControllerMobile extends Controller
             ], 404);
         }
 
-        // 2️⃣ ambil tugas sesuai matakuliah + status pengumpulan
+        // 2️⃣ ambil tugas
         $tugas = DB::table('krs')
             ->join('detail_krs', 'krs.kode_krs', '=', 'detail_krs.krs_kode')
             ->join('kelas', 'detail_krs.kelas_kode', '=', 'kelas.kode_kelas')
@@ -61,7 +69,7 @@ class TugasControllerMobile extends Controller
         // 3️⃣ buat URL file tugas
         $tugas->transform(function ($item) {
             if ($item->upload_file_tugas) {
-                $item->file_tugas_url = asset('storage/' . $item->upload_file_tugas);
+                $item->file_tugas_url = asset('storage/tugas/' . $item->upload_file_tugas);
             } else {
                 $item->file_tugas_url = null;
             }

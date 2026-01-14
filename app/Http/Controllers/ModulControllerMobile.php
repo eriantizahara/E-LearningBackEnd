@@ -10,7 +10,15 @@ class ModulControllerMobile extends Controller
 {
     public function getDataModul(Request $request)
     {
+        // ambil user dari token sanctum
         $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthorized - token tidak valid'
+            ], 401);
+        }
+
         $kodeMatkul = $request->query('kode_matakuliah');
 
         if (!$kodeMatkul) {
@@ -30,7 +38,7 @@ class ModulControllerMobile extends Controller
             ], 404);
         }
 
-        // ambil modul sesuai MATKUL
+        // ambil modul
         $moduls = DB::table('krs')
             ->join('detail_krs', 'krs.kode_krs', '=', 'detail_krs.krs_kode')
             ->join('kelas', 'detail_krs.kelas_kode', '=', 'kelas.kode_kelas')
@@ -50,7 +58,7 @@ class ModulControllerMobile extends Controller
 
         // ubah ke URL publik
         $moduls->transform(function ($item) {
-            $item->file_url = asset('storage/' . $item->file_modul);
+            $item->file_url = asset('storage/moduls/' . $item->file_modul);
             return $item;
         });
 
