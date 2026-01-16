@@ -13,7 +13,7 @@
             <span class="fw-semibold">Daftar User</span>
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                 data-bs-target="#modalCreateUser">
-                <i class="fa fa-plus-circle"></i> Tambah Data
+                <i class="fa fa-plus-circle"></i> Tambah Data User
             </button>
 
         </div>
