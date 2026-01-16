@@ -50,7 +50,7 @@ class ModulControllerMobile extends Controller
 
         // ubah ke URL publik
         $moduls->transform(function ($item) {
-            $item->file_url = asset('storage/' . $item->file_modul);
+            $item->file_url = asset('storage/moduls/' . $item->file_modul);
             return $item;
         });
 
