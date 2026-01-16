@@ -25,3 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tugas/detail', [TugasControllerMobile::class, 'detailTugas']);
     Route::post('/tugas/upload', [TugasControllerMobile::class, 'uploadJawaban']);
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/tugas/todo', [TugasControllerMobile::class, 'getTodoTugas']);
+});

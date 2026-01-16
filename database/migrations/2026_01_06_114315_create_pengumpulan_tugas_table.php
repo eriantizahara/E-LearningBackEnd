@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id(); // PK
             $table->string('tugas_kode'); // FK ke tabel tugas
             $table->string('mahasiswa_nobp'); // FK ke tabel mahasiswa
-            $table->string('upload_file_jawaban')->nullable();
+            $table->string('upload_foto_video')->nullable();
+            $table->string('foto_video_thumb')->nullable();
+            $table->string('jawaban_text')->nullable();
             $table->decimal('nilai', 5, 2)->nullable(); // nilai bisa desimal
             $table->timestamps(); // created_at = waktu submit, updated_at = waktu terakhir diubah
 
