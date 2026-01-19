@@ -16,6 +16,8 @@ use App\Http\Controllers\PengumpulanTugasControllerWeb;
 use App\Http\Controllers\KRSMahasiswaControllerWeb;
 use App\Http\Controllers\DashboardControllerWeb;
 use App\Http\Controllers\ProfileControllerWeb;
+use App\Http\Controllers\LaporanControllerWeb;
+
 
 
 
@@ -129,4 +131,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/akun', [ProfileControllerWeb::class, 'akun'])->name('akun');
     Route::post('/akun/ganti-password', [ProfileControllerWeb::class, 'updatePassword'])
         ->name('akun.password.update');
+});
+
+
+// =====================
+// Laporan Routes
+// =====================
+Route::middleware(['auth'])->group(function () {
+
+    Route::get(
+        '/laporan/nilai-mahasiswa',
+        [LaporanControllerWeb::class, 'nilaiMahasiswa']
+    )->name('laporan.nilai');
+
+    Route::get('/laporan/nilai/pdf', [LaporanControllerWeb::class, 'downloadPdf'])
+        ->name('laporan.nilai.pdf');
 });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Data Mahasiswa</h4>
+<h4 class="fw-bold mb-2">Data Mahasiswa</h4>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <span class="fw-semibold">Daftar Mahasiswa</span>
             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateMahasiswa">
-                <i class="fa fa-plus-circle"></i> Tambah Data
+                <i class="fa fa-plus-circle me-1"></i> Tambah Data
             </button>
         </div>
 
@@ -36,7 +36,7 @@
                         <td>{{ $mahasiswa->nobp }}</td>
                         <td>{{ $mahasiswa->nama_lengkap }}</td>
                         <td>{{ $mahasiswa->user->email }}</td>
-                        <td>{{ $mahasiswa->jenis_kelamin }}</td>
+                        <td class="text-center">{{ $mahasiswa->jenis_kelamin }}</td>
                         <td class="text-center">
                             @php
                             $statusColors = [
@@ -94,7 +94,7 @@
 
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold">Tambah Mahasiswa</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <div class="modal-body">
@@ -179,8 +179,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i>Simpan</button>
                 </div>
 
             </form>
@@ -201,7 +203,7 @@
 
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold">Edit Mahasiswa</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <div class="modal-body">
@@ -288,8 +290,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat me-1"></i>Simpan Perubahan</button>
                 </div>
 
             </form>

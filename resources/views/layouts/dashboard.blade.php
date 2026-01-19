@@ -9,7 +9,7 @@
 
         <p class="mt-2 text-muted">
             Hai {{ Auth::user()->name }},
-            selamat datang di Sistem Informasi E-Learning.
+            selamat datang di Sistem Informasi Akademik.
             Silakan gunakan menu di samping untuk mengakses fitur sesuai peran Anda.
         </p>
     </div>
@@ -100,142 +100,208 @@
 
 
 {{-- ===================== STATISTIK DASHBOARD ===================== --}}
-<div class="row mb-3 g-3">
+<div class="row mb-2 g-2">
 
     {{-- ================= ADMIN ================= --}}
     @if(Auth::user()->role === 'admin')
-    <div class="col-md-3">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-people-fill fs-2 text-primary"></i>
-            <h6 class="text-muted mt-2">Total Mahasiswa</h6>
-            <h4 class="fw-bold">{{ $totalMahasiswa ?? 0 }}</h4>
-        </div>
-    </div>
+    <div class="row mb-2 g-1">
 
-    <div class="col-md-3">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-person-badge-fill fs-2 text-success"></i>
-            <h6 class="text-muted mt-2">Total Dosen</h6>
-            <h4 class="fw-bold">{{ $totalDosen ?? 0 }}</h4>
+        {{-- Statistik --}}
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-people-fill fs-2 text-primary"></i>
+                <h6 class="text-muted mt-2">Total Mahasiswa</h6>
+                <h4 class="fw-bold">{{ $totalMahasiswa ?? 0 }}</h4>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-journal-bookmark-fill fs-2 text-warning"></i>
-            <h6 class="text-muted mt-2">Mata Kuliah</h6>
-            <h4 class="fw-bold">{{ $totalMatakuliah ?? 0 }}</h4>
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-person-badge-fill fs-2 text-success"></i>
+                <h6 class="text-muted mt-2">Total Dosen</h6>
+                <h4 class="fw-bold">{{ $totalDosen ?? 0 }}</h4>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-clipboard-data-fill fs-2 text-danger"></i>
-            <h6 class="text-muted mt-2">Kelas Aktif</h6>
-            <h4 class="fw-bold">{{ $totalKelas ?? 0 }}</h4>
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-journal-bookmark-fill fs-2 text-warning"></i>
+                <h6 class="text-muted mt-2">Mata Kuliah</h6>
+                <h4 class="fw-bold">{{ $totalMatakuliah ?? 0 }}</h4>
+            </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-clipboard-data-fill fs-2 text-danger"></i>
+                <h6 class="text-muted mt-2">Kelas Aktif</h6>
+                <h4 class="fw-bold">{{ $totalKelas ?? 0 }}</h4>
+            </div>
+        </div>
+
+        {{-- Info Sistem --}}
+        <div class="col-md-12">
+            <div class="card shadow-sm p-4 d-flex justify-content-center" style="min-height:110px;">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-info-circle-fill fs-2 text-primary"></i>
+                    <div>
+                        <div class="fw-bold">Kontrol Sistem Akademik</div>
+                        <div class="text-muted small mt-1">
+                            Anda memiliki akses penuh untuk mengelola dan memantau data akademik
+                            melalui menu navigasi.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- ===================== WAKTU ===================== --}}
+        <div class="card shadow-sm mb-3">
+            <div class="card-body text-center">
+                <h6 class="mb-1">
+                    <i class="bi bi-clock text-primary me-2"></i>
+                    Tanggal & Waktu
+                </h6>
+                <div class="fw-bold">
+                    {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+                </div>
+                <div class="text-muted fs-5" id="jam-digital"></div>
+            </div>
+        </div>
+
     </div>
     @endif
+
 
     {{-- ================= DOSEN ================= --}}
     @if(Auth::user()->role === 'dosen')
-    <div class="col-md-4">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-easel-fill fs-2 text-primary"></i>
-            <h6 class="text-muted mt-2">Kelas Mengajar</h6>
-            <h4 class="fw-bold">{{ $kelasMengajar ?? 0 }}</h4>
-        </div>
-    </div>
+    <div class="row mb-2 g-1">
 
-    <div class="col-md-4">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-journal-text fs-2 text-success"></i>
-            <h6 class="text-muted mt-2">Mata Kuliah</h6>
-            <h4 class="fw-bold">{{ $matakuliahDosen ?? 0 }}</h4>
+        {{-- Statistik --}}
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-easel-fill fs-2 text-primary"></i>
+                <h6 class="text-muted mt-2">Kelas Mengajar</h6>
+                <h4 class="fw-bold">{{ $kelasMengajar ?? 0 }}</h4>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-file-earmark-text fs-2 text-warning"></i>
-            <h6 class="text-muted mt-2">Tugas Dibuat</h6>
-            <h4 class="fw-bold">{{ $totalTugas ?? 0 }}</h4>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-journal-text fs-2 text-success"></i>
+                <h6 class="text-muted mt-2">Mata Kuliah</h6>
+                <h4 class="fw-bold">{{ $matakuliahDosen ?? 0 }}</h4>
+            </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-file-earmark-text fs-2 text-warning"></i>
+                <h6 class="text-muted mt-2">Tugas Dibuat</h6>
+                <h4 class="fw-bold">{{ $totalTugas ?? 0 }}</h4>
+            </div>
+        </div>
+
+        {{-- Aksi --}}
+        <div class="col-md-12">
+            <a href="{{ route('laporan.nilai.pdf') }}" class="text-decoration-none">
+                <div class="border border-warning rounded shadow-sm p-3 text-center">
+                    <i class="bi bi-file-earmark-plus fs-2 text-warning"></i>
+                    <div class="fw-bold mt-2">Laporan Nilai</div>
+                    <div class="text-muted small">Mahasiswa</div>
+                </div>
+            </a>
+        </div>
+
+        {{-- ===================== WAKTU ===================== --}}
+        <div class="card shadow-sm mt-4 mb-3">
+            <div class="card-body text-center">
+                <h6 class="mb-1">
+                    <i class="bi bi-clock text-primary me-2"></i>
+                    Tanggal & Waktu
+                </h6>
+                <div class="fw-bold">
+                    {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+                </div>
+                <div class="text-muted fs-5" id="jam-digital"></div>
+            </div>
+        </div>
+
     </div>
     @endif
+
 
     {{-- ================= MAHASISWA ================= --}}
     @if(Auth::user()->role === 'mahasiswa')
-    <div class="col-md-4">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-book-fill fs-2 text-primary"></i>
-            <h6 class="text-muted mt-2">Mata Kuliah Diambil</h6>
-            <h4 class="fw-bold">{{ $matakuliahDiambil ?? 0 }}</h4>
-        </div>
-    </div>
+    <div class="row mb-2 g-1">
 
-    <div class="col-md-4">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-file-earmark-check fs-2 text-success"></i>
-            <h6 class="text-muted mt-2">Tugas Selesai</h6>
-            <h4 class="fw-bold">{{ $tugasSelesai ?? 0 }}</h4>
+        {{-- Statistik --}}
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-book-fill fs-2 text-primary"></i>
+                <h6 class="text-muted mt-2">Mata Kuliah Diambil</h6>
+                <h4 class="fw-bold">{{ $matakuliahDiambil ?? 0 }}</h4>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card shadow-sm text-center p-3">
-            <i class="bi bi-hourglass-split fs-2 text-danger"></i>
-            <h6 class="text-muted mt-2">Tugas Pending</h6>
-            <h4 class="fw-bold">{{ $tugasPending ?? 0 }}</h4>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-file-earmark-check fs-2 text-success"></i>
+                <h6 class="text-muted mt-2">Tugas Selesai</h6>
+                <h4 class="fw-bold">{{ $tugasSelesai ?? 0 }}</h4>
+            </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center p-3">
+                <i class="bi bi-hourglass-split fs-2 text-danger"></i>
+                <h6 class="text-muted mt-2">Tugas Pending</h6>
+                <h4 class="fw-bold">{{ $tugasPending ?? 0 }}</h4>
+            </div>
+        </div>
+
+        {{-- ===================== MOTIVATIONAL QUOTE ===================== --}}
+            <div class="col-md-12">
+                <div class="card shadow-sm p-4 text-center">
+                    <i class="bi bi-quote fs-2 text-primary mb-2"></i>
+                    <blockquote class="mb-1 fw-semibold" id="quote-text"></blockquote>
+                    <div class="text-muted small" id="quote-author"></div>
+                </div>
+            </div>
+
+        {{-- Aksi
+        <div class="col-md-12">
+            <a href="{{ route('krs.mahasiswa.index') }}" class="text-decoration-none">
+                <div class="border border-success rounded shadow-sm p-3 text-center">
+                    <i class="bi bi-card-checklist fs-2 text-success"></i>
+                    <div class="fw-bold mt-2">KRS</div>
+                    <div class="text-muted small">Kelola studi Anda</div>
+                </div>
+            </a>
+        </div> --}}
+
+        {{-- ===================== WAKTU ===================== --}}
+        <div class="card shadow-sm mb-3">
+            <div class="card-body text-center">
+                <h6 class="mb-1">
+                    <i class="bi bi-clock text-primary me-2"></i>
+                    Tanggal & Waktu
+                </h6>
+                <div class="fw-bold">
+                    {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+                </div>
+                <div class="text-muted fs-5" id="jam-digital"></div>
+            </div>
+        </div>
+
     </div>
     @endif
 
 </div>
 
-{{-- ===================== AKSI CEPAT ===================== --}}
-<div class="row mb-4 g-3">
-
-    @if(Auth::user()->role === 'admin')
-    <div class="col-md-12">
-        <a href="#" class="text-decoration-none">
-            <div class="border border-primary rounded shadow-sm p-3 text-center">
-                <i class="bi bi-bar-chart-fill fs-2 text-primary"></i>
-                <div class="fw-bold mt-2">Laporan Akademik</div>
-                <div class="text-muted small">Rekap data</div>
-            </div>
-        </a>
-    </div>
-    @endif
-
-    @if(Auth::user()->role === 'dosen')
-    <div class="col-md-12">
-        <a href="#" class="text-decoration-none">
-            <div class="border border-warning rounded shadow-sm p-3 text-center">
-                <i class="bi bi-file-earmark-plus fs-2 text-warning"></i>
-                <div class="fw-bold mt-2">Kelola Tugas</div>
-                <div class="text-muted small">Menilai tugas</div>
-            </div>
-        </a>
-    </div>
-    @endif
-
-    @if(Auth::user()->role === 'mahasiswa')
-    <div class="col-md-12">
-        <a href="{{ route('krs.mahasiswa.index') }}" class="text-decoration-none">
-            <div class="border border-success rounded shadow-sm p-3 text-center">
-                <i class="bi bi-card-checklist fs-2 text-success"></i>
-                <div class="fw-bold mt-2">KRS</div>
-                <div class="text-muted small">Kelola studi Anda</div>
-            </div>
-        </a>
-    </div>
-    @endif
-
-</div>
 
 {{-- ===================== WAKTU ===================== --}}
-<div class="card shadow-sm mb-3">
+{{-- <div class="card shadow-sm mt-4 mb-3">
     <div class="card-body text-center">
         <h6 class="mb-1">
             <i class="bi bi-clock text-primary me-2"></i>
@@ -246,7 +312,7 @@
         </div>
         <div class="text-muted fs-5" id="jam-digital"></div>
     </div>
-</div>
+</div> --}}
 
 <script>
     function updateClock() {
@@ -259,5 +325,36 @@
     setInterval(updateClock, 1000);
     updateClock();
 </script>
+
+<script>
+    const quotes = [
+        {
+            text: "Kesuksesan bukan tentang seberapa cepat kamu berhasil, tapi seberapa konsisten kamu belajar.",
+            author: "E-Learning Insight"
+        },
+        {
+            text: "Belajar hari ini adalah investasi terbaik untuk masa depan.",
+            author: "Academic Motivation"
+        },
+        {
+            text: "Ilmu tidak akan habis dibagi, justru bertambah ketika digunakan.",
+            author: "Inspirasi Pendidikan"
+        },
+        {
+            text: "Tugas boleh banyak, menyerah jangan.",
+            author: "Motivasi Mahasiswa"
+        },
+        {
+            text: "Disiplin kecil hari ini menciptakan prestasi besar esok hari.",
+            author: "Growth Mindset"
+        }
+    ];
+
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    document.getElementById('quote-text').innerText = `"${randomQuote.text}"`;
+    document.getElementById('quote-author').innerText = `— ${randomQuote.author}`;
+</script>
+
 
 @endsection

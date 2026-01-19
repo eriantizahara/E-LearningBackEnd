@@ -111,7 +111,7 @@
                 </h6>
 
                 <div class="mb-3">
-                    <div class="label">Nama Pengguna</div>
+                    <div class="label">Nama Pengguna / Username</div>
                     <div class="value">{{ $user->name }}</div>
                 </div>
 

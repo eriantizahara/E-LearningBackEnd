@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Kartu Rencana Studi (KRS)</h4>
+<h4 class="fw-bold mb-2">Kartu Rencana Studi (KRS)</h4>
 @endsection
 
 @section('content')
@@ -79,7 +79,7 @@
 
             @if(!$krs || $krs->status === 'pending')
             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalPilihKelas">
-                <i class="fa fa-plus-circle"></i> Tambah Kelas
+                <i class="fa fa-plus-circle me-1"></i> Tambah Kelas
             </button>
             @endif
         </div>

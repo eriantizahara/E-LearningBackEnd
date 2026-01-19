@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 
+
 class UsersControllerMobile extends Controller
 {
     public function updateUserPhoto(Request $request)

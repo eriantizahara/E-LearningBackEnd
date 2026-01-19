@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Pengumpulan Tugas</h4>
+<h4 class="fw-bold mb-2">Pengumpulan Tugas</h4>
 @endsection
 
 @section('content')
@@ -56,7 +56,8 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Mahasiswa</th>
                         <th class="text-center">Judul Tugas</th>
-                        <th class="text-center">File Jawaban</th>
+                        <th class="text-center">Jawaban Foto & video</th>
+                        <th class="text-center">Jawaban Text</th>
                         <th class="text-center">Nilai</th>
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -68,19 +69,44 @@
                         <td>{{ $item->mahasiswa->nobp }} - {{ $item->mahasiswa->nama_lengkap }}</td>
                         <td>{{ $item->tugas->judul }}</td>
                         <td class="text-center">
-                            @if($item->upload_file_jawaban)
-                            <a href="{{ asset('storage/jawaban/'.$item->upload_file_jawaban) }}" 
-                               class="btn btn-outline-primary btn-sm" target="_blank">
-                                <i class="fa fa-eye"></i>
+                            @if($item->upload_foto_video)
+                            @php
+                            $file = $item->upload_foto_video; // SUDAH ADA PATH
+                            $path = asset('storage/'.$file); // JANGAN TAMBAH PATH LAGI
+                            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+                            $imageExt = ['jpg','jpeg','png','gif','webp'];
+                            $videoExt = ['mp4','webm','ogg','mov'];
+                            @endphp
+
+                            {{-- GAMBAR --}}
+                            @if(in_array($ext, $imageExt))
+                            <a href="{{ $path }}" target="_blank">
+                                <img src="{{ $path }}" class="img-thumbnail" style="max-width:80px; max-height:80px;">
                             </a>
+
+                            {{-- VIDEO --}}
+                            @elseif(in_array($ext, $videoExt))
+                            <a href="{{ $path }}" class="btn btn-outline-danger btn-sm" target="_blank">
+                                <i class="fa fa-play"></i> Video
+                            </a>
+
+                            {{-- FILE LAIN --}}
+                            @else
+                            <a href="{{ $path }}" class="btn btn-outline-secondary btn-sm" target="_blank">
+                                <i class="fa fa-download"></i> File
+                            </a>
+                            @endif
                             @else
                             <span class="text-muted">-</span>
                             @endif
                         </td>
+
+
+                        <td>{{ $item->jawaban_text ?? '-' }}</td>
                         <td class="text-center">{{ $item->nilai ?? '-' }}</td>
                         <td class="text-center">
-                            <button class="btn btn-warning btn-sm btn-edit"
-                                data-id="{{ $item->id }}"
+                            <button class="btn btn-warning btn-sm btn-edit" data-id="{{ $item->id }}"
                                 data-nilai="{{ $item->nilai }}">
                                 <i class="fa fa-edit"></i>
                             </button>
@@ -125,7 +151,7 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-$(document).ready(function () {
+    $(document).ready(function () {
     $('#datatable').DataTable();
 });
 

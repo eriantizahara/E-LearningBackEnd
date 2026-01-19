@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Data KRS</h4>
+<h4 class="fw-bold mb-2">Data KRS</h4>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
         <div class="d-flex justify-content-between mb-4">
             <span class="fw-semibold">Daftar KRS Mahasiswa</span>
             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateKrs">
-                <i class="fa fa-plus-circle"></i> Tambah KRS
+                <i class="fa fa-plus-circle me-1"></i> Tambah KRS
             </button>
         </div>
 
@@ -100,7 +100,7 @@
                             <input type="text" id="nama_mahasiswa" class="form-control" readonly>
                             <input type="hidden" name="mahasiswa_nobp" id="nobp_mahasiswa">
                             <button type="button" class="btn btn-secondary" id="btnOpenMahasiswa">
-                                Pilih
+                                <i class="bi bi-person-plus me-2"></i>Pilih
                             </button>
                         </div>
                     </div>
@@ -142,8 +142,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i>Simpan</button>
                 </div>
 
             </form>

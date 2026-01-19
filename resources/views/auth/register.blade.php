@@ -47,10 +47,10 @@
           <div class="register-body">
 
             <div class="text-center mb-4">
-              <img src="{{ asset('assets/images/logos/logo-light.svg') }}" width="120">
+              <img src="{{ asset('assets/images/logos/logo.png') }}" width="120">
               <h4 class="mt-3 fw-bold">Registrasi Akun</h4>
               <p class="text-muted">
-                Lengkapi data berikut untuk membuat akun pada sistem E-Learning.
+                Lengkapi data berikut untuk membuat akun pada sistem Akademik.
               </p>
             </div>
 

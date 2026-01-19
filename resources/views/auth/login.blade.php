@@ -47,10 +47,10 @@
                     <div class="login-left">
 
                         <div class="text-center mb-4">
-                            <img src="{{ asset('assets/images/logos/logo-light.svg') }}" width="120">
-                            <h4 class="mt-3 fw-bold">Login E-Learning</h4>
+                            <img src="{{ asset('assets/images/logos/logo.png') }}" width="120">
+                            <h4 class="mt-3 fw-bold">Login Akademik</h4>
                             <p class="text-muted">
-                                Silakan masuk untuk mengakses layanan akademik yang tersedia.
+                                Silakan masuk untuk mengakses layanan akademik anda.
                             </p>
                         </div>
 
