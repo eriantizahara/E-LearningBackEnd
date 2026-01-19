@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Data Matakuliah</h4>
+<h4 class="fw-bold mb-2">Data Matakuliah</h4>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
             <span class="fw-semibold">Daftar Matakuliah</span>
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                 data-bs-target="#modalCreateMatakuliah">
-                <i class="fa fa-plus-circle"></i> Tambah Data
+                <i class="fa fa-plus-circle me-1"></i> Tambah Data
             </button>
         </div>
 
@@ -35,8 +35,8 @@
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $matakuliah->kode_matakuliah }}</td>
                         <td>{{ $matakuliah->nama_matakuliah }}</td>
-                        <td>{{ $matakuliah->sks }}</td>
-                        <td>{{ $matakuliah->semester }}</td>
+                        <td class="text-center">{{ $matakuliah->sks }}</td>
+                        <td class="text-center">{{ $matakuliah->semester }}</td>
                         <td class="text-center">
 
                             <!-- TOMBOL EDIT (MODAL) -->
@@ -88,14 +88,14 @@
                     <!-- Kode Matakuliah-->
                     <div class="mb-3">
                         <label class="form-label">Kode Matakuliah</label>
-                        <input type="text" name="kode_matakuliah" class="form-control" placeholder="Masukkan kode"
+                        <input type="text" name="kode_matakuliah" class="form-control" placeholder="Masukkan kode matakuliah"
                             required>
                     </div>
 
                     <!-- Nama Matakuliah -->
                     <div class="mb-3">
                         <label class="form-label">Nama Matakuliah</label>
-                        <input type="text" name="nama_matakuliah" class="form-control" placeholder="Masukkan nama"
+                        <input type="text" name="nama_matakuliah" class="form-control" placeholder="Masukkan nama matakuliah"
                             required>
                     </div>
 
@@ -115,8 +115,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i>Simpan</button>
                 </div>
 
             </form>
@@ -165,8 +167,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat me-1"></i>Simpan Perubahan</button>
                 </div>
 
             </form>

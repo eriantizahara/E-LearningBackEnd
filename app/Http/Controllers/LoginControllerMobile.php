@@ -69,8 +69,36 @@ class LoginControllerMobile extends Controller
         $user = $request->user()->load('mahasiswa');
 
         return response()->json([
-            'user' => $user,
-            'mahasiswa' => $user->mahasiswa
+            'user' => [
+                'id'          => $user->id,
+                'name'        => $user->name,
+                'email'       => $user->email,
+                'role'        => $user->role,
+                'photo'       => $user->photo,
+                'photo_thumb' => $user->photo_thumb,
+                'created_at'  => $user->created_at,
+                'updated_at'  => $user->updated_at,
+            ],
+            'mahasiswa' => $user->mahasiswa ? [
+                'nobp'          => $user->mahasiswa->nobp,
+                'nama_lengkap'  => $user->mahasiswa->nama_lengkap,
+                'jenis_kelamin' => $user->mahasiswa->jenis_kelamin,
+                'prodi'         => $user->mahasiswa->prodi,
+                'angkatan'      => $user->mahasiswa->angkatan,
+                'status'        => $user->mahasiswa->status,
+            ] : null
         ], 200);
     }
+
+
+
+    // public function dataPengguna(Request $request)
+    // {
+    //     $user = $request->user()->load('mahasiswa');
+
+    //     return response()->json([
+    //         'user' => $user,
+    //         'mahasiswa' => $user->mahasiswa
+    //     ], 200);
+    // }
 }

@@ -16,7 +16,9 @@ class PengumpulanTugas extends Model
     protected $fillable = [
         'tugas_kode',
         'mahasiswa_nobp',
-        'upload_file_jawaban',
+        'upload_foto_video',
+        'foto_video_thumb',
+        'jawaban_text',
         'nilai',
     ];
 

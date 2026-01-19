@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Data User</h4>
+<h4 class="fw-bold mb-2">Data User</h4>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
             <span class="fw-semibold">Daftar User</span>
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                 data-bs-target="#modalCreateUser">
-                <i class="fa fa-plus-circle"></i> Tambah Data User
+                <i class="fa fa-plus-circle me-1"></i> Tambah Data
             </button>
 
         </div>
@@ -25,6 +25,7 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Email</th>
+                        <th class="text-center">Photo</th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -35,6 +36,15 @@
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td class="text-center">
+                            @if ($user->photo)
+                            <img src="{{ $user->photo }}" class="rounded-circle" width="50" height="50"
+                                style="object-fit: cover;">
+                            @else
+                            <span class="text-muted">-</span>
+                            @endif
+                        </td>
+
                         <td class="text-center">
                             @php
                             $roleColors = [
@@ -93,7 +103,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form action="{{ route('users.store') }}" method="POST">
+            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-body">
@@ -101,7 +111,7 @@
                     <!-- Nama -->
                     <div class="mb-3">
                         <label class="form-label">Nama</label>
-                        <input type="text" name="name" class="form-control" placeholder="Masukkan nama" required>
+                        <input type="text" name="name" class="form-control" placeholder="Masukkan nama/username" required>
                     </div>
 
                     <!-- Email -->
@@ -117,6 +127,14 @@
                             required>
                     </div>
 
+                    <!-- Photo -->
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label>
+                        <input type="file" name="photo" class="form-control" accept="image/*">
+                        <small class="text-muted">Format: JPG, PNG. Opsional.</small>
+                    </div>
+
+
                     <!-- Role -->
                     <div class="mb-3">
                         <label class="form-label">Role</label>
@@ -131,12 +149,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Batal
-                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
                     <button type="submit" class="btn btn-primary">
-                        Simpan
-                    </button>
+                        <i class="bi bi-save me-1"></i>Simpan</button>
                 </div>
 
             </form>
@@ -155,7 +171,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form method="POST" id="formEditUser">
+            <form method="POST" id="formEditUser" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -177,6 +193,14 @@
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah</small>
                     </div>
 
+                    <!-- Photo -->
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label>
+                        <input type="file" name="photo" class="form-control" accept="image/*">
+                        <small class="text-muted">Kosongkan jika tidak ingin mengubah photo</small>
+                    </div>
+
+
                     <div class="mb-3">
                         <label class="form-label">Role</label>
                         <select name="role" id="edit_role" class="form-select" required>
@@ -189,12 +213,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Batal
-                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
                     <button type="submit" class="btn btn-primary">
-                        Simpan Perubahan
-                    </button>
+                        <i class="bi bi-arrow-repeat me-1"></i>Simpan Perubahan</button>
                 </div>
 
             </form>

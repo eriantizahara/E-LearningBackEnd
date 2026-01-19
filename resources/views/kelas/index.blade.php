@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Data Kelas</h4>
+<h4 class="fw-bold mb-2">Data Kelas</h4>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <span class="fw-semibold">Daftar Kelas</span>
             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateKelas">
-                <i class="fa fa-plus-circle"></i> Tambah Data
+                <i class="fa fa-plus-circle me-1"></i> Tambah Data
             </button>
         </div>
 
@@ -25,9 +25,9 @@
                         <th class="text-center align-middle">Mata Kuliah</th>
                         <th class="text-center align-middle">SMT</th>
                         <th class="text-center align-middle">Dosen</th>
+                        <th class="text-center align-middle">Ruang</th>
                         <th class="text-center align-middle">Hari</th>
                         <th class="text-center align-middle">Jam</th>
-                        <th class="text-center align-middle">Ruang</th>
                         <th class="text-center align-middle">Kapasitas</th>
                         <th class="text-center align-middle">Aksi</th>
                     </tr>
@@ -38,11 +38,11 @@
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $item->kode_kelas }}</td>
                         <td>{{ $item->matakuliah->nama_matakuliah }}</td>
-                        <td>{{ $item->matakuliah->semester }}</td>
+                        <td class="text-center">{{ $item->matakuliah->semester }}</td>
                         <td>{{ $item->dosen->nama_lengkap }}</td>
-                        <td>{{ $item->hari }}</td>
-                        <td>{{ $item->jam_mulai }} - {{ $item->jam_selesai }}</td>
-                        <td>{{ $item->ruang }}</td>
+                        <td class="text-center">{{ $item->ruang }}</td>
+                        <td class="text-center">{{ $item->hari }}</td>
+                        <td class="text-center">{{ $item->jam_mulai }} - {{ $item->jam_selesai }}</td>
                         <td class="text-center">{{ $item->kapasitas }}</td>
                         <td class="text-center">
 
@@ -51,8 +51,8 @@
                                 data-mk="{{ $item->matakuliah_kode }}"
                                 data-nama-mk="{{ $item->matakuliah->nama_matakuliah }}"
                                 data-dosen="{{ $item->dosen_nidn }}" data-nama-dosen="{{ $item->dosen->nama_lengkap }}"
-                                data-hari="{{ $item->hari }}" data-mulai="{{ $item->jam_mulai }}"
-                                data-selesai="{{ $item->jam_selesai }}" data-ruang="{{ $item->ruang }}"
+                                data-ruang="{{ $item->ruang }}" data-hari="{{ $item->hari }}"
+                                data-mulai="{{ $item->jam_mulai }}" data-selesai="{{ $item->jam_selesai }}"
                                 data-kapasitas="{{ $item->kapasitas }}">
                                 <i class="fa fa-edit"></i>
                             </button>
@@ -107,7 +107,7 @@
                                     readonly>
                                 <input type="hidden" name="matakuliah_kode" id="matkul_kode">
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modalSelectMatkul">Pilih</button>
+                                    data-bs-target="#modalSelectMatkul"><i class="bi bi-search me-1"></i>Pilih</button>
                             </div>
                         </div>
 
@@ -119,21 +119,20 @@
                                     readonly>
                                 <input type="hidden" name="dosen_nidn" id="dosen_nidn">
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modalSelectDosen">
+                                    data-bs-target="#modalSelectDosen"><i class="bi bi-search me-1"></i>
                                     Pilih
                                 </button>
                             </div>
                         </div>
 
+                        <div class="col-md-3 mb-3">
+                            <label>Ruang</label>
+                            <input type="text" name="ruang" class="form-control" required>
+                        </div>
 
                         <div class="col-md-3 mb-3">
                             <label>Hari</label>
                             <input type="text" name="hari" class="form-control" required>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label>Ruang</label>
-                            <input type="text" name="ruang" class="form-control" required>
                         </div>
 
                         <div class="col-md-3 mb-3">
@@ -156,8 +155,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i>Simpan</button>
                 </div>
 
             </form>
@@ -195,7 +196,8 @@
                                 <input type="text" id="edit_matkul_nama" class="form-control" readonly>
                                 <input type="hidden" name="matakuliah_kode" id="edit_matkul_kode">
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modalSelectMatkulEdit">Pilih</button>
+                                    data-bs-target="#modalSelectMatkulEdit"><i
+                                        class="bi bi-search me-1"></i>Pilih</button>
                             </div>
                         </div>
 
@@ -206,22 +208,22 @@
                                 <input type="text" id="edit_dosen_nama" class="form-control" readonly>
                                 <input type="hidden" name="dosen_nidn" id="edit_dosen_nidn">
                                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modalSelectDosenEdit">
+                                    data-bs-target="#modalSelectDosenEdit"><i class="bi bi-search me-1"></i>
                                     Pilih
                                 </button>
                             </div>
-                        </div>
-
-                        <!-- HARI -->
-                        <div class="col-md-3 mb-3">
-                            <label>Hari</label>
-                            <input type="text" id="edit_hari" name="hari" class="form-control">
                         </div>
 
                         <!-- RUANG -->
                         <div class="col-md-3 mb-3">
                             <label>Ruang</label>
                             <input type="text" id="edit_ruang" name="ruang" class="form-control">
+                        </div>
+
+                        <!-- HARI -->
+                        <div class="col-md-3 mb-3">
+                            <label>Hari</label>
+                            <input type="text" id="edit_hari" name="hari" class="form-control">
                         </div>
 
                         <!-- JAM MULAI -->
@@ -246,8 +248,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat me-1"></i>Simpan Perubahan</button>
                 </div>
 
             </form>
@@ -427,7 +431,7 @@
     $('#datatable').DataTable();
 });
 
-// Saat tombol pilih di modal create matakuliah diklik
+// Saat di modal create, tombol pilih matakuliah diklik
 $(document).on('click', '.btn-select-mk', function() {
     let kode = $(this).data('kode');
     let nama = $(this).data('nama');
@@ -443,7 +447,7 @@ $(document).on('click', '.btn-select-mk', function() {
 
 });
 
-// Saat tombol pilih di modal edit matakuliah diklik
+// Saat di modal edit, tombol pilih matakuliah diklik
 $(document).on('click', '.btn-select-mk-edit', function() {
     let kode = $(this).data('kode');
     let nama = $(this).data('nama');
@@ -492,10 +496,10 @@ $(document).on('click', '.btn-edit', function () {
     $('#edit_dosen_nidn').val($(this).data('dosen'));
 
     $('#edit_kode_kelas').val($(this).data('kode'));
+    $('#edit_ruang').val($(this).data('ruang'));
     $('#edit_hari').val($(this).data('hari'));
     $('#edit_mulai').val($(this).data('mulai'));
     $('#edit_selesai').val($(this).data('selesai'));
-    $('#edit_ruang').val($(this).data('ruang'));
     $('#edit_kapasitas').val($(this).data('kapasitas'));
 
 

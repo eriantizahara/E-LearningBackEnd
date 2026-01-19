@@ -17,19 +17,18 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('photo')->nullable();
-            $table->string('photo_thumb')->nullable();
+            $table->string('photo', 255)->nullable();
+            $table->string('photo_thumb', 255)->nullable();
 
             // role dikontrol dari controller (tanpa default)
             $table->enum('role', ['admin', 'mahasiswa', 'dosen']);
-
-            // informasi tambahan
             $table->string('ip_address')->nullable();
             $table->string('user_agent')->nullable();
 
             $table->rememberToken();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

@@ -8,8 +8,8 @@ $role = session('role');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E-Learning</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/seodashlogo.png') }}">
+  <title>Akademik</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/logo.png') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
 
   <!-- Bootstrap Icons CDN -->
@@ -33,9 +33,11 @@ $role = session('role');
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="{{ asset('assets/images/logos/logo-light.svg') }}" alt="" />
+        <div class="brand-logo position-relative d-flex align-items-center"
+     style="min-height: 70px; padding: 4px 16px;">
+          <a href="./index.html" class="text-nowrap logo-img position-absolute top-50 start-50 translate-middle">
+            <img src="{{ asset('assets/images/logos/logo.png') }}" alt="Logo" width="110" height="70"
+              style="margin-top: 18px; margin-bottom: 1px; object-fit: contain;" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -114,42 +116,6 @@ $role = session('role');
                 <span class="hide-menu">KRS</span>
               </a>
             </li>
-            <li class="nav-small-cap">
-              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4" class="fs-6"></iconify-icon>
-              <span class="hide-menu">Laporan</span>
-            </li>
-            {{-- <li class="sidebar-item">
-              <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:chart-square-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Laporan Dosen</span>
-              </a>
-            </li> --}}
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:chart-square-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Laporan Mahasiswa</span>
-              </a>
-            </li>
-            {{-- <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:chart-square-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Laporan Matakuliah</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:chart-square-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Laporan KRS</span>
-              </a>
-            </li> --}}
           </ul>
         </nav>
         @endif
@@ -199,6 +165,19 @@ $role = session('role');
                 </span>
                 <span class="hide-menu">Pengumpulan Tugas</span>
               </a>
+            </li>
+            <li class="nav-small-cap">
+              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4" class="fs-6"></iconify-icon>
+              <span class="hide-menu">Laporan</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('laporan.nilai') }}" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:chart-square-bold-duotone" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Laporan Nilai Mahasiswa</span>
+              </a>
+
             </li>
 
           </ul>
@@ -275,8 +254,9 @@ $role = session('role');
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="{{ asset('assets/images/profile/user.png') }}" alt="" width="35" height="35"
-                    class="rounded-circle">
+                  <img src="{{ optional(auth()->user())->photo 
+        ? asset(auth()->user()->photo) 
+        : asset('assets/images/profile/user.png') }}" alt="User" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">

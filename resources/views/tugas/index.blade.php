@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-heading')
-<h4 class="fw-bold mb-0">Manajemen Tugas</h4>
+<h4 class="fw-bold mb-2">Manajemen Tugas</h4>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <span class="fw-semibold">Daftar Tugas</span>
             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateTugas">
-                <i class="fa fa-plus-circle"></i> Tambah Tugas
+                <i class="fa fa-plus-circle me-1"></i> Tambah Tugas
             </button>
         </div>
 
@@ -142,8 +142,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Simpan</button>
+                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i>Simpan</button>
                 </div>
             </div>
 
@@ -202,8 +204,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary">Update</button>
+                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Batal</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat me-1"></i>Simpan Perubahan</button>
                 </div>
             </div>
 
